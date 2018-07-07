@@ -15,12 +15,12 @@ export default new Router({
       component: MainPage
     },
     {
-      path: '/PreviewCard',
+      path: '/PreviewCardBottom',
       name: 'PreviewCardBottom',
       component: PreviewCardBottom
     },
     {
-      path: '/PreviewCard',
+      path: '/PreviewCardTop',
       name: 'PreviewCardTop',
       component: PreviewCardTop
     }
