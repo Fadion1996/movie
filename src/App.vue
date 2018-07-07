@@ -2,8 +2,8 @@
   <div class="container">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/previewcard">About</router-link>
-      <router-link to="/PreviewCard">PreviewCardBottom</router-link>
+      <router-link to="/PreviewCardTop">About</router-link>
+      <router-link to="/PreviewCardbottom">PreviewCardBottom</router-link>
       <router-view/>
     </div>
     <div></div>
