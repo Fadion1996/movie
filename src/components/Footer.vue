@@ -1,21 +1,64 @@
 <template>
   <footer>
-    <aside class="icons">
-      <a href="https://www.facebook.com/"><img class="socIcon" src="../assets/fb_icon.png" alt=""></a>
-      <a href="https://plus.google.com/"><img class="socIcon" src="../assets/google_icon.png" alt=""></a>
-      <a href="https://www.youtube.com/"><img class="socIcon" src="../assets/fb_icon.png" alt=""></a>
-      <a href="https://www.instagram.com/?hl=ru"><img class="socIcon" src="../assets/instaG.png" alt=""></a>
+    <aside class="icons" >
+      <a v-for="item in images" :href="item.a"><img class="socIcon" :src="item.src" :alt="item.alt"></a>
+
     </aside>
     <div class="menu_bottom">
-      <a href="#"><p>Главная</p></a>
-      <a href="#"><p>Контакты</p></a>
-      <a href="#"><p>Правообладателям</p></a>
+      <a v-for="item in bottomMenu" :href="item.a"><p>{{item.message}}</p></a>
     </div>
   </footer>
 </template>
 
 <script>
 
+ export default {
+   data() {
+     return {
+       images: [
+         {
+           a: "https://www.facebook.com/",
+           src: require("../assets/fb_icon.png"),
+           alt: "facebook"
+         },
+         {
+           a: "https://plus.google.com/",
+           src: require("../assets/google_icon.png"),
+           alt: "google"
+         },
+         {
+           a: "https://www.youtube.com/",
+           src: require("../assets/fb_icon.png"),
+           alt: "youtube"
+         },
+         {
+           a: "https://www.instagram.com/?hl=ru",
+           src: require("../assets/instaG.png"),
+           alt: "instagram"
+         }
+       ],
+       bottomMenu: [
+         {
+           a: "",
+           message: "Главная"
+         },
+         {
+           a: "",
+           message: "Контакты"
+         },
+         {
+           a: "",
+           message: "Правообладателям"
+         }
+       ]
+     }
+   },
+   methods: {
+     getImage() {
+
+     }
+   }
+ }
 
 
 </script>
@@ -28,11 +71,17 @@
     flex-direction: column;
     /*padding-bottom: 0;*/
     height: 54px;
-    position: absolute;
+    position: fixed;
+    left: 0;
     bottom: 0;
     width: 100%;
     background: #77c1bb;
     padding: 15px 0 20px 0;
+  }
+  .icons{
+    display: flex;
+    justify-content: space-between;
+    width: 110px;
   }
   .menu_bottom>a{
     text-decoration: none;

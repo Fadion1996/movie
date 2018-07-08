@@ -7,6 +7,7 @@
       <router-view/>
     </div>
     <div></div>
+    <CustomFooter />
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 
 import PreviewCardTop from '@/components/PreviewCard/PreviewCardTop'
 import axios from 'axios'
+import CustomFooter from './components/Footer'
 
 export default {
 
@@ -44,6 +46,9 @@ export default {
 //         console.log
 //      )
     }
+  },
+  components: {
+    CustomFooter
   }
 }
 
@@ -68,4 +73,5 @@ export default {
     color: #42b983;
   }
 }
+
 </style>
