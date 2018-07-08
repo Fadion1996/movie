@@ -2,7 +2,7 @@
  <div class="list">
 <ul  class="list-film"> 
   <li v-for="item in items.results" v-bind:key="item.id">
-    <router-link v-on:click.native="checkArray" :to="{ 'name': 'PreviewCardTop', 'params': {'id' : item.id} }">
+    <router-link v-on:click.native="checkArray" :to="{ 'name': 'PreviewCard', 'params': {'id' : item.id} }">
      <div class="block-photo"> <img :src="path + item.backdrop_path" alt=""> 
        <h3>{{item.title}}</h3></div>
        <div class="star-ring"></div>

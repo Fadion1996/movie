@@ -67,41 +67,5 @@ export default {
 
 <style>
 
-    .list-film {
-        width: 100%;
-        max-width: 1200px;
-        display: flex;
-        flex-wrap: wrap;
-        padding-left: 0;
-        margin: 0 auto;
-    }
-    .list-film li {
-        margin: 20px 0px 0px 40px;
-        list-style: none;
-        width: 46%;
-        position: relative;
-    }
-    .list-film img {
-        width: 100%
-    }
-    .list-film h3 {
-        position: absolute;
-        top: 260px;
-        left: 20px;
-        color: #fff;
-    }
-    .star-ring {
-        position: absolute;
-        top: 10px;
-        left: 450px;
-    }
-    .star-ring img {
-        width: 40px;
-        height: 40px;
-    }
-    .list-film .block-photo:hover {
-        opacity: 0.5;
-        transition: 1.5s;
-    }
 </style>
 
