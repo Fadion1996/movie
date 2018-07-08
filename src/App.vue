@@ -1,12 +1,15 @@
 <template>
+<div id="app">
+<CustomHeader />
   <div class="container">
       <MainPage :func="getCurrentFilm" :funcGuys="getGuys" :items="searcResults" />
       <router-view :itemArr="this.currentFilm" :itemGuys="this.currentGuys" />
   </div>
+</div>
 </template>
 
 <script>
-
+import CustomHeader from '@/components/Header.vue'
 import MainPage from '@/components/MainPage'
 import axios from 'axios'
 export default {
@@ -23,12 +26,13 @@ export default {
     }
   },
   methods: {
+
     getSearch () {
         axios.get(this.apiUrl).then(res => {
           this.searcResults = res.data
           // console.log(res)
           // console.log(this.idArray)
-          
+
           })
     },
     async getCurrentFilm() {
@@ -49,7 +53,8 @@ export default {
     }
   },
   components: {
-    MainPage
+    MainPage,
+    CustomHeader
   },
   updated() {
     // this.getCurrentFilm()
@@ -66,6 +71,7 @@ export default {
 </script>
 
 <style>
-
+body {
+  margin: 0;
+}
 </style>
-
