@@ -1,28 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from '@/components/MainPage'
-import PreviewCardBottom from '@/components/PreviewCard/PreviewCardBottom'
-import PreviewCardTop from '@/components/PreviewCard/PreviewCardTop'
+import PreviewCard from '@/components/PreviewCard'
+import VueCarousel from 'vue-carousel';
 
-
+Vue.use(VueCarousel)
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/MainPage',
       name: 'MainPage',
       component: MainPage
     },
     {
-      path: '/PreviewCardBottom',
-      name: 'PreviewCardBottom',
-      component: PreviewCardBottom
-    },
-    {
-      path: '/PreviewCardTop',
-      name: 'PreviewCardTop',
-      component: PreviewCardTop
+      path: '/PreviewCard/:id',
+      name: 'PreviewCard',
+      component: PreviewCard
     }
   ]
 })
