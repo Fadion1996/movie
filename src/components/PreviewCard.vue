@@ -43,6 +43,10 @@ export default {
   border-radius: 50%;
 }
 
+.details {
+  width: 50%;
+}
+
 .details table {
   width: 520px;
   border-spacing: 0px;
