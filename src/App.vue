@@ -1,71 +1,107 @@
 <template>
   <div class="container">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/PreviewCardTop">About</router-link>
-      <router-link to="/PreviewCardbottom">PreviewCardBottom</router-link>
-      <router-view/>
-    </div>
-    <div></div>
+      <MainPage :func="getCurrentFilm" :funcGuys="getGuys" :items="searcResults" />
+      <router-view :itemArr="this.currentFilm" :itemGuys="this.currentGuys" />
   </div>
 </template>
 
 <script>
 
-import PreviewCardTop from '@/components/PreviewCard/PreviewCardTop'
+import MainPage from '@/components/MainPage'
 import axios from 'axios'
-
 export default {
-
   name: 'App',
-  data () {
+  data() {
     return {
+      id: 0,
       searcResults: [],
+      currentFilm: {},
+      currentGuys: {},
       searchValue: '',
-      apiUrl: "https://api.themoviedb.org/3/movie/12/videos?api_key=3b4c6e4b835fcf0c54e75da62ba54f49&language=en-US"
+      idArray:[],
+      apiUrl: "https://api.themoviedb.org/3/movie/upcoming?api_key=3b4c6e4b835fcf0c54e75da62ba54f49&language=ru&page=1",
     }
   },
   methods: {
     getSearch () {
-        axios.get(this.apiUrl).then(res => console.log(res))
-//      let options = {
-//        params: {
-//            query: this.searchValue
-//        }
-//      }
-//      axios.get(this.apiUrl, options).then(function(response) {
-//
-//        //  console.log(window.location.href)
-//        this.searcResults = response.data.results
-//        window.location.href = '#/search'
-//        //this.searchValue = ''
-//
-//      },
-//         console.log
-//      )
+        axios.get(this.apiUrl).then(res => {
+          this.searcResults = res.data
+          // console.log(res)
+          // console.log(this.idArray)
+          
+          })
+    },
+    async getCurrentFilm() {
+       this.id = await this.$route.params.id
+      axios.get(`https://api.themoviedb.org/3/movie/${this.id}?api_key=3b4c6e4b835fcf0c54e75da62ba54f49&language=ru`).then(res => {
+          this.currentFilm = res
+          // this.idArray = res.data.results
+          console.log(this.currentFilm)
+          })
+    },
+    getGuys() {
+      this.id = this.$route.params.id
+      axios.get(`https://api.themoviedb.org/3/movie/${this.id}/credits?api_key=3b4c6e4b835fcf0c54e75da62ba54f49`).then(res => {
+          this.currentGuys = res
+          // this.idArray = res.data.results
+          console.log(this.currentGuys)
+          })
     }
-  }
+  },
+  components: {
+    MainPage
+  },
+  updated() {
+    // this.getCurrentFilm()
+    // this.getGuys()
+    console.log('1')
+  },
+  beforeMount() {
+    this.getSearch()
+    this.getGuys()
+  this.getCurrentFilm()
+  },
 }
 
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    text-decoration: none;
-    color: #2c3e50;
-  }
-  a .router-link-exact-active {
-    color: #42b983;
-  }
-}
+
+    .list-film {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin: 0 auto;
+    }
+    .list-film li {
+        margin: 20px 0px 0px 40px;
+        list-style: none;
+        width: 46%;
+        position: relative;
+    }
+    .list-film img {
+        width: 100%
+    }
+    .list-film h3 {
+        position: absolute;
+        top: 260px;
+        left: 20px;
+        color: #fff;
+    }
+    .star-ring {
+        position: absolute;
+        top: 10px;
+        left: 450px;
+    }
+    .star-ring img {
+        width: 40px;
+        height: 40px;
+    }
+    .list-film .block-photo:hover {
+        opacity: 0.5;
+        transition: 1.5s;
+    }
 </style>
+

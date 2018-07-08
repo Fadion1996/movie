@@ -64,7 +64,7 @@
         axios.get(this.creditsUrl)
         .then(response => {
           this.actors = response.data.cast;
-          console.log(this.actors);
+          // console.log(this.actors);
         })
       }
     },

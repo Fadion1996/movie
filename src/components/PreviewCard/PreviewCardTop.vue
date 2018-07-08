@@ -2,57 +2,50 @@
  
 <div class="card-main"> 
    <div class="photo"> 
-      <img :src="path + results " alt=""> 
-        
+      <img :src="path + itemArr.data.backdrop_path " alt=""> 
    </div> 
-   <div class="title"><h1>{{titles}} ({{release_dates }})</h1> </div> 
-   <div class="details">  
-    
+   <div class="title"><h1>{{itemArr.data.title}} ({{itemArr.data.release_date }})</h1> </div> 
    <table> 
        <tr> 
            <td>Страна</td> 
-           <td>{{country}}</td> 
+           <td>{{itemArr.data.production_countries[0].name}}</td> 
        </tr> 
        <tr> 
            <td>Слоган</td> 
-           <td>"{{taglines}}"</td> 
+           <td>"{{itemArr.data.tagline}}"</td> 
        </tr> 
        <tr> 
            <td>Режиссер</td> 
-           <td>{{productions[0].name }}</td> 
+           <td>{{itemGuys.data.crew[0].name }}</td> 
        </tr> 
        <tr> 
            <td>Сценарий</td> 
-           <td>{{productions[1].name}}</td> 
+           <td>{{itemGuys.data.crew[1].name}}</td> 
        </tr> 
        <tr> 
            <td>Жанр</td> 
-           <td ><p v-for="item in genre">{{item.name}}</p></td> 
+           <td ><p v-for="item in itemArr.data.genres">{{item.name}}</p></td> 
        </tr> 
        <tr> 
            <td>Время</td> 
-           <td>{{runtimes}} минут  </td> 
+           <td>{{itemArr.data.runtime}} минут  </td> 
        </tr> 
    </table> 
-   </div> 
-    
    <div class="description"> 
        <h3>Про фильм</h3> 
-       <p>{{overviews}}</p> 
+       <p>{{itemArr.data.overview}}</p> 
    </div> 
-     
-</div> 
- 
+   </div>
 </template> 
  
 <script> 
     import axios from 'axios' 
     export default { 
-        name: 'PreviewCardTop', 
-        //        props: ['svl'], 
- 
+        name: 'PreviewCardTop',
+        props: ['itemArr', 'func', 'itemGuys'],
         data() { 
             return { 
+                id: this.$route.params.id,
                 results: [], 
                 titles: [], 
                 release_dates: [], 
@@ -63,49 +56,19 @@
                 counter: 1, 
                 overviews: '', 
                 genre: [], 
-                path: 'https://image.tmdb.org/t/p/w500', 
-                 
+                path: 'https://image.tmdb.org/t/p/w500',    
             } 
         }, 
         methods: { 
-            getImage() { 
- 
-                axios.get("https://api.themoviedb.org/3/movie/351286?api_key=3b4c6e4b835fcf0c54e75da62ba54f49&language=ru").then((response) => { 
-                    console.log(response); 
- 
-                    this.results = response.data.backdrop_path 
-                    this.titles = response.data.title 
-                    this.release_dates = response.data.release_date.split('-')[0] 
-                    this.country = response.data.production_countries[0].name 
-                    this.taglines = response.data.tagline 
-                    this.genre = response.data.genres 
-                    this.runtimes = response.data.runtime 
-                    this.overviews = response.data.overview 
-                    console.log(this.genre) 
-                }) 
-            }, 
-             
-            getGuys() { 
-            axios.get("https://api.themoviedb.org/3/movie/351286/credits?api_key=3b4c6e4b835fcf0c54e75da62ba54f49").then((response) => { 
-                    console.log(response); 
-                this.productions = response.data.crew 
-                this.productions = response.data.crew 
- 
-        }) 
-        } 
         }, 
-        mounted() { 
- 
-            this.getImage() 
-        this.getGuys() 
-         
+        mounted() {
+        },
+        beforeMount() { 
+            this.func() 
         } 
-    } 
-     
- 
+    }
 </script> 
- 
- 
+
 <style> 
  
  

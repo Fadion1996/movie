@@ -5,12 +5,13 @@ import PreviewCardBottom from '@/components/PreviewCard/PreviewCardBottom'
 import PreviewCardTop from '@/components/PreviewCard/PreviewCardTop'
 
 
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/MainPage',
       name: 'MainPage',
       component: MainPage
     },
@@ -20,7 +21,7 @@ export default new Router({
       component: PreviewCardBottom
     },
     {
-      path: '/PreviewCardTop',
+      path: '/PreviewCardTop/:id',
       name: 'PreviewCardTop',
       component: PreviewCardTop
     }
