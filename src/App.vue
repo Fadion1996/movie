@@ -2,8 +2,7 @@
   <div class="container">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/PreviewCardTop">About</router-link>
-      <router-link to="/PreviewCardbottom">PreviewCardBottom</router-link>
+      <router-link to="/PreviewCard">PreviewCard</router-link>
       <router-view/>
     </div>
     <div></div>
@@ -12,7 +11,7 @@
 
 <script>
 
-import PreviewCardTop from '@/components/PreviewCard/PreviewCardTop'
+import PreviewCard from '@/components/PreviewCard'
 import axios from 'axios'
 
 export default {
@@ -23,26 +22,6 @@ export default {
       searcResults: [],
       searchValue: '',
       apiUrl: "https://api.themoviedb.org/3/movie/12/videos?api_key=3b4c6e4b835fcf0c54e75da62ba54f49&language=en-US"
-    }
-  },
-  methods: {
-    getSearch () {
-        axios.get(this.apiUrl).then(res => console.log(res))
-//      let options = {
-//        params: {
-//            query: this.searchValue
-//        }
-//      }
-//      axios.get(this.apiUrl, options).then(function(response) {
-//
-//        //  console.log(window.location.href)
-//        this.searcResults = response.data.results
-//        window.location.href = '#/search'
-//        //this.searchValue = ''
-//
-//      },
-//         console.log
-//      )
     }
   }
 }
